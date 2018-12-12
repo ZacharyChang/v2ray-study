@@ -14,8 +14,8 @@ import (
 
 	"v2ray.com/core"
 	"v2ray.com/core/common/platform"
-	"v2ray.com/core/main/confloader"
-	_ "v2ray.com/core/main/distro/all"
+	"v2ray.com/v2ray-study/main/confloader"
+	_ "v2ray.com/v2ray-study/main/distro/all"
 )
 
 var (

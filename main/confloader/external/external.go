@@ -7,7 +7,7 @@ import (
 
 	"v2ray.com/core/common/buf"
 	"v2ray.com/core/common/platform/ctlcmd"
-	"v2ray.com/core/main/confloader"
+	"v2ray.com/v2ray-study/main/confloader"
 )
 
 //go:generate errorgen
