@@ -12,8 +12,8 @@ import (
 	"strings"
 	"syscall"
 
-	"v2ray.com/core"
 	"v2ray.com/core/common/platform"
+	core "v2ray.com/v2ray-study"
 	"v2ray.com/v2ray-study/main/confloader"
 
 	// The following are necessary as they register handlers in their init functions.
