@@ -6,8 +6,8 @@ option go_package = "core";
 option java_package = "com.v2ray.core";
 option java_multiple_files = true;
 
-import "v2ray.com/core/common/serial/typed_message.proto";
-import "v2ray.com/core/transport/config.proto";
+import "v2ray.com/v2ray-study/common/serial/typed_message.proto";
+import "v2ray.com/v2ray-study/transport/config.proto";
 
 // Config is the master config of V2Ray. V2Ray takes this config as input and functions accordingly.
 message Config {
