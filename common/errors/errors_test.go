@@ -1,6 +1,7 @@
 package errors_test
 
 import (
+	"fmt"
 	"io"
 	"testing"
 
@@ -27,6 +28,11 @@ func TestError(t *testing.T) {
 	err = New("TestError5").Base(err)
 	assert(GetSeverity(err), Equals, log.Severity_Warning)
 	assert(err.Error(), HasSubstring, "EOF")
+
+	t.Log(fmt.Sprintf("TestError5: %s\n", err.Error()))
+
+	err = New("TestError6").Base(New("baseError")).WithPathObj(e{})
+	t.Log(fmt.Sprintf("TestError6: %s\n", err.Error()))
 }
 
 type e struct{}
@@ -36,13 +42,14 @@ func TestErrorMessage(t *testing.T) {
 		err error
 		msg string
 	}{
+		// Note: compare test
 		{
 			err: New("a").Base(New("b")).WithPathObj(e{}),
-			msg: "v2ray.com/core/common/errors_test: a > b",
+			msg: "v2ray.com/v2ray-study/common/errors_test: a > b",
 		},
 		{
 			err: New("a").Base(New("b").WithPathObj(e{})),
-			msg: "a > v2ray.com/core/common/errors_test: b",
+			msg: "a > v2ray.com/v2ray-study/common/errors_test: b",
 		},
 	}
 

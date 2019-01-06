@@ -21,18 +21,21 @@ type hasSeverity interface {
 
 // Error is an error object with underlying error.
 type Error struct {
-	pathObj  interface{}
-	prefix   []interface{}
-	message  []interface{}
+	pathObj interface{}
+	prefix  []interface{}
+	message []interface{}
+	// Note: builtin error interface
 	inner    error
 	severity log.Severity
 }
 
+// Note: set pathObj
 func (err *Error) WithPathObj(obj interface{}) *Error {
 	err.pathObj = obj
 	return err
 }
 
+// Note: get the pkgPath of the error by reflect
 func (err *Error) pkgPath() string {
 	if err.pathObj == nil {
 		return ""
@@ -41,6 +44,7 @@ func (err *Error) pkgPath() string {
 }
 
 // Error implements error.Error().
+// Note: convert Error to string info
 func (err *Error) Error() string {
 	builder := strings.Builder{}
 	for _, prefix := range err.prefix {
@@ -66,7 +70,7 @@ func (err *Error) Error() string {
 	return builder.String()
 }
 
-// Inner implements hasInnerError.Inner()
+// Note: Error implements hasInnerError.Inner()
 func (err *Error) Inner() error {
 	if err.inner == nil {
 		return nil
@@ -74,6 +78,7 @@ func (err *Error) Inner() error {
 	return err.inner
 }
 
+// Note: set the inner error
 func (err *Error) Base(e error) *Error {
 	err.inner = e
 	return err
@@ -88,7 +93,8 @@ func (err *Error) Severity() log.Severity {
 	if err.inner == nil {
 		return err.severity
 	}
-
+	// Note: type assert as interface hasSeverity, and get its Severity()
+	// if the inner severity is more serious than that, return the inner severity
 	if s, ok := err.inner.(hasSeverity); ok {
 		as := s.Severity()
 		if as < err.severity {
@@ -191,5 +197,6 @@ func GetSeverity(err error) log.Severity {
 	if s, ok := err.(hasSeverity); ok {
 		return s.Severity()
 	}
+	// return info level as default
 	return log.Severity_Info
 }
