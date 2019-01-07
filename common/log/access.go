@@ -20,6 +20,7 @@ type AccessMessage struct {
 	Reason interface{}
 }
 
+// Note: String implements Message
 func (m *AccessMessage) String() string {
 	builder := strings.Builder{}
 	builder.WriteString(serial.ToString(m.From))

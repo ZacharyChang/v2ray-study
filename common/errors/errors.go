@@ -70,7 +70,7 @@ func (err *Error) Error() string {
 	return builder.String()
 }
 
-// Note: Error implements hasInnerError.Inner()
+// Note: Inner implements hasInnerError.Inner()
 func (err *Error) Inner() error {
 	if err.inner == nil {
 		return nil

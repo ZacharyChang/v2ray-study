@@ -66,6 +66,7 @@ func (l *generalLogger) run() {
 	}
 }
 
+// Note: Handle implements Handler
 func (l *generalLogger) Handle(msg Message) {
 	select {
 	case l.buffer <- msg:
@@ -87,6 +88,7 @@ type consoleLogWriter struct {
 	logger *log.Logger
 }
 
+// Note: Write and Close implements Writer
 func (w *consoleLogWriter) Write(s string) error {
 	w.logger.Print(s)
 	return nil
@@ -101,6 +103,7 @@ type fileLogWriter struct {
 	logger *log.Logger
 }
 
+// Note: Write and Close implements Writer
 func (w *fileLogWriter) Write(s string) error {
 	w.logger.Print(s)
 	return nil

@@ -47,10 +47,13 @@ func RegisterHandler(handler Handler) {
 
 type syncHandler struct {
 	sync.RWMutex
+	// Note: Handler is the interface for log
 	Handler
 }
 
+// Note: Handle implements Handler
 func (h *syncHandler) Handle(msg Message) {
+	// Note: read lock provided by sync.RWMutex
 	h.RLock()
 	defer h.RUnlock()
 
@@ -59,6 +62,7 @@ func (h *syncHandler) Handle(msg Message) {
 	}
 }
 
+// Note: set handler with write lock
 func (h *syncHandler) Set(handler Handler) {
 	h.Lock()
 	defer h.Unlock()
