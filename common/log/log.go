@@ -1,3 +1,4 @@
+//go:generate protoc -I $GOPATH/src --go_out=plugins=grpc:$GOPATH/src v2ray.com/v2ray-study/common/log/log.proto
 package log // import "v2ray.com/v2ray-study/common/log"
 
 import (
