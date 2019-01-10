@@ -1,5 +1,5 @@
 // +build windows
-
+// Note: this file will be built under windows
 package ctlcmd
 
 import "syscall"

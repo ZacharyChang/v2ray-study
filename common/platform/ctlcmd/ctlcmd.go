@@ -20,6 +20,7 @@ func Run(args []string, input io.Reader) (buf.MultiBuffer, error) {
 	var errBuffer buf.MultiBufferContainer
 	var outBuffer buf.MultiBufferContainer
 
+	// Note: exec v2ctl command
 	cmd := exec.Command(v2ctl, args...)
 	cmd.Stderr = &errBuffer
 	cmd.Stdout = &outBuffer

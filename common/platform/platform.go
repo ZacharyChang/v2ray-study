@@ -19,6 +19,7 @@ func NewEnvFlag(name string) EnvFlag {
 	}
 }
 
+// Note: get value from env, return the param func if not exist
 func (f EnvFlag) GetValue(defaultValue func() string) string {
 	if v, found := os.LookupEnv(f.Name); found {
 		return v
