@@ -1,4 +1,5 @@
 //go:generate protoc -I $GOPATH/src --go_out=plugins=grpc:$GOPATH/src v2ray.com/v2ray-study/common/net/address.proto
+//go:generate errorgen
 package net
 
 import (
