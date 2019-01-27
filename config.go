@@ -1,4 +1,4 @@
-//go:generate protoc -I $GOPATH/src --go_out=plugins=grpc:. v2ray.com/v2ray-study/config.proto
+//go:generate protoc -I $GOPATH/src --go_out=plugins=grpc:$GOPATH/src v2ray.com/v2ray-study/config.proto
 package core
 
 import (
